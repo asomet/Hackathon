@@ -21,4 +21,5 @@
     <string name="add_pic" />
     <string name="suppression_compte" />
     <string name="oui" />
+    <string name="name_deals_list">Name</string>
 </resources>
