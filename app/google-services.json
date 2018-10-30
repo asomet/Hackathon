@@ -1,35 +1,75 @@
 {
   "project_info": {
-    "project_number": "279974896216",
-    "firebase_url": "https://hackathon-f88e7.firebaseio.com",
-    "project_id": "hackathon-f88e7",
-    "storage_bucket": "hackathon-f88e7.appspot.com"
+    "project_number": "1085751875638",
+    "firebase_url": "https://gooddeals-a75b6.firebaseio.com",
+    "project_id": "gooddeals-a75b6",
+    "storage_bucket": "gooddeals-a75b6.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:279974896216:android:dbebe18f1e1ab79a",
+        "mobilesdk_app_id": "1:1085751875638:android:2f3e480ad394824f",
         "android_client_info": {
-          "package_name": "fr.wildcodeschool.hackathon"
+          "package_name": "fr.wildcodeschool.gooddeals"
         }
       },
       "oauth_client": [
         {
-          "client_id": "279974896216-5v5mqn2r76o1drtokl5fbs7oasp21784.apps.googleusercontent.com",
+          "client_id": "1085751875638-ot9bgq43lu32ru1ubbd8rce19ei1qu35.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "fr.wildcodeschool.hackathon",
+            "package_name": "fr.wildcodeschool.gooddeals",
+            "certificate_hash": "39b628db43a28908ea27523f960cb30720a85b93"
+          }
+        },
+        {
+          "client_id": "1085751875638-be0hsq6pmvovlp2j5sdbodiho1nkkcdk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "fr.wildcodeschool.gooddeals",
+            "certificate_hash": "a45005a2931b039cb652ada6815fc080b91eb12d"
+          }
+        },
+        {
+          "client_id": "1085751875638-s7n295fd82dhq1nd301khlbeapeindab.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "fr.wildcodeschool.gooddeals",
+            "certificate_hash": "4d27da001baac65f278a291ae76aa907f545d737"
+          }
+        },
+        {
+          "client_id": "1085751875638-4farcsvb9vcrtuivbi62kv8crbakpm1l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "fr.wildcodeschool.gooddeals",
+            "certificate_hash": "165fa139ca5194a9783ff3e38ae55301d6d29e21"
+          }
+        },
+        {
+          "client_id": "1085751875638-8fhnks26uhc4q55ium62hdlcmpv79h4q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "fr.wildcodeschool.gooddeals",
+            "certificate_hash": "31a718efe50acd2b6e466524175e72285d992532"
+          }
+        },
+        {
+          "client_id": "1085751875638-0sm2anpooa7t8cjl2fteqmca7j9635te.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "fr.wildcodeschool.gooddeals",
             "certificate_hash": "a2f8f5a33d1f7a02e5318c39dfb725dd70093cb0"
           }
         },
         {
-          "client_id": "279974896216-89d02b1tfjnel5gtdcotd4og702g3c20.apps.googleusercontent.com",
+          "client_id": "1085751875638-qig9d1tm5j217a8elvc842jaj7er857s.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDK7UPeis252rFIO2YJmC1Su6RtGNCu5Fk"
+          "current_key": "AIzaSyBaPiaj7dcpsnAF5zDYVIZlsloFdNhtduw"
         }
       ],
       "services": {
@@ -40,7 +80,51 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "279974896216-89d02b1tfjnel5gtdcotd4og702g3c20.apps.googleusercontent.com",
+              "client_id": "1085751875638-qig9d1tm5j217a8elvc842jaj7er857s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085751875638:android:dbebe18f1e1ab79a",
+        "android_client_info": {
+          "package_name": "fr.wildcodeschool.hackathon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1085751875638-t544gqh6989fmep11hn9atbua9r6erhg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "fr.wildcodeschool.hackathon",
+            "certificate_hash": "31a718efe50acd2b6e466524175e72285d992532"
+          }
+        },
+        {
+          "client_id": "1085751875638-qig9d1tm5j217a8elvc842jaj7er857s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaPiaj7dcpsnAF5zDYVIZlsloFdNhtduw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1085751875638-qig9d1tm5j217a8elvc842jaj7er857s.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

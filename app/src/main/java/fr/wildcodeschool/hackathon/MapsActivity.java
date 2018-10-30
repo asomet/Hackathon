@@ -27,15 +27,25 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private FusedLocationProviderClient mFusedLocationClient;
     private LocationManager mLocationManager = null;
+    private ArrayList<CandyModel> candyArrayList = new ArrayList<>();
 
 
     @Override
@@ -146,10 +156,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
+    public void loadCandy(final CandyListener listener) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference dealRef = database.getReference("deal");
+        dealRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot candySnapshot : dataSnapshot.getChildren()) {
+                    CandyModel candy = candySnapshot.getValue(CandyModel.class);
+                    candyArrayList.add(candy);
+                }
+                listener.onResponse(true);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                listener.onResponse(false);
+            }
+        });
+    }
+
+
     private void moveCamera(Location location) {
         // zoome la camera sur la dernière position connue
         LatLng latLong = new LatLng(location.getLatitude(), location.getLongitude());
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLong, 17.0f));
+
+
     }
 
 
@@ -165,6 +198,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        loadCandy(new CandyListener() {
+            @Override
+            public void onResponse(boolean success) {
+                for (CandyModel candyModel : candyArrayList) {
+                    MarkerOptions markerOptions = new MarkerOptions()
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.pumpkin));
+                    markerOptions.position(new LatLng(candyModel.getLatitude(), candyModel.getLongitude()));
+                    Marker marker = mMap.addMarker(markerOptions);
+                    marker.setTag(candyModel);
+                }
+            }
+        });
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
