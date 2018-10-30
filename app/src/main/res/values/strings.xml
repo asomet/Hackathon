@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">Hackathon</string>
+    <string name="s_inscrire">S\'inscrire</string>
+    <string name="loginButton">Login</string>
+    <string name="loginPassword">Password</string>
+    <string name="loginEmail">Email</string>
+    <string name="loginTextView">Candy Wild</string>
+    <string name="connected" />
+    <string name="error_login_fields" />
+    <string name="auth_fail" />
+    <string name="registrationTextView">Candy Race</string>
+    <string name="registrationEmail">Email</string>
+    <string name="registrationPassword">Password</string>
+    <string name="registrationButton">Send</string>
+    <string name="supprimer_mon_compte">Delete account</string>
+    <string name="valider">Send</string>
+    <string name="choisir_son_pseudo">Choose pseudo</string>
+    <string name="take_picture" />
+    <string name="choose_picture" />
+    <string name="cancel" />
+    <string name="add_pic" />
+    <string name="suppression_compte" />
+    <string name="oui" />
 </resources>
