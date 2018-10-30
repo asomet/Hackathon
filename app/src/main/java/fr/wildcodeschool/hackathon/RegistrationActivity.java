@@ -43,6 +43,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     Toast.makeText(RegistrationActivity.this, R.string.error_login_fields, Toast.LENGTH_SHORT).show();
                 } else {
                     signUpUser(email, password);
+
                 }
             }
         });
@@ -83,8 +84,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser currentUser) {
         if (currentUser != null) {
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("fragmentNumber", 1); //for example
+            Intent intent = new Intent(this, ProfilActivity.class);
             startActivity(intent);
         }
     }

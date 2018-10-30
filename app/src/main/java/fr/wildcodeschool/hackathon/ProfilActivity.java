@@ -73,18 +73,13 @@ public class ProfilActivity extends android.support.v4.app.Fragment {
             }
         });
 
-        // Button delete
-        Button delete = rootView.findViewById(R.id.profile_activity_button_delete);
+
         ImageView imgFavorite = rootView.findViewById(R.id.imageViewPhoto);
-        EditText editPseudo = rootView.findViewById(R.id.edit_text_pseudo);
 
         Singleton singleton = Singleton.getInstance();
         LoginModel loginModel = singleton.getLogModel();
         boolean hasPhoto = false;
         if (loginModel != null) {
-            if (loginModel.getPseudo() != null) {
-                editPseudo.getText().append(loginModel.getPseudo());
-            }
             if (loginModel.getPhoto() != null) {
                 hasPhoto = true;
                 Glide.with(getActivity())
@@ -99,29 +94,7 @@ public class ProfilActivity extends android.support.v4.app.Fragment {
                     .apply(RequestOptions.circleCropTransform())
                     .into(imgFavorite);
         }
-        delete.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View view) {
-                new AlertDialog.Builder(getContext())
-                        .setMessage(R.string.suppression_compte)
-                        .setCancelable(false)
-                        .setPositiveButton(R.string.oui, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                //Deleting user info from database
-                                mDatabase.getReference().child(user.getUid()).removeValue();
-                                //Deleting user.
-                                user.delete();
-                                //Signing out and back to login.
-                                FirebaseAuth.getInstance().signOut();
-                                Singleton.getInstance().singleClear();
-                                startActivity(new Intent(getActivity(), MainActivity.class));
-                            }
-                        })
-                        .setNegativeButton("Non", null)
-                        .show();
-            }
-        });
         imgFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -251,87 +224,6 @@ public class ProfilActivity extends android.support.v4.app.Fragment {
                 }
             });
 
-           /* uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                @Override
-                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                    if (!task.isSuccessful()) {
-                        throw task.getException();
-                    }
-                    // Continue with the task to get the download URL
-                    return ref.getDownloadUrl();
-                }
-                // DOWNLOAD URI CHEMIN DE LA PHOTO VERS GOOGLE
-            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                @Override
-                public void onComplete(@NonNull Task<Uri> task) {
-                    if (task.isSuccessful()) {
-                        Uri downloadUri = task.getResult();
-                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-                        DatabaseReference myRef = database.getReference("User");
-
-                        Singleton singleton = Singleton.getInstance();
-                        LoginModel loginModel = singleton.getLogModel();
-                        loginModel.setPhoto(downloadUri.toString());
-                        EditText etPseudo = getActivity().findViewById(R.id.edit_text_pseudo);
-                        String pseudo = etPseudo.getText().toString();
-                        loginModel.setPseudo(pseudo);
-                        myRef.child(user.getUid()).setValue(loginModel);
-                        singleton.setLogModel(loginModel);
-                        updateUserProfile();
-                        startActivity(new Intent(getActivity(),MainActivity.class));
-                    } else {
-                        // Handle failures
-                        // ...
-                    }
-                }
-            });
-        } else {
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference myRef = database.getReference("User");
-            Singleton singleton = Singleton.getInstance();
-            LoginModel loginModel = singleton.getLogModel();
-            EditText etPseudo = getActivity().findViewById(R.id.edit_text_pseudo);
-            String pseudo = etPseudo.getText().toString();
-            loginModel.setPseudo(pseudo);
-            myRef.child(user.getUid()).setValue(loginModel);
-            singleton.setLogModel(loginModel);
-            updateUserProfile();
-            startActivity(new Intent(getActivity(),MainActivity.class));
-
-        }
-    }
-
-    private void updateUserProfile() {
-        NavigationView navigationView = getActivity().findViewById(R.id.nav_view);
-        View headerview = navigationView.getHeaderView(0);
-        ImageView imageUser = headerview.findViewById(R.id.imageDeal);
-        TextView pseudoTv = headerview.findViewById(R.id.pseudo_header);
-        TextView headerEmailUser = headerview.findViewById(R.id.emailUser_text_view);
-        Menu navigationViewMenu = navigationView.getMenu();
-
-        Singleton singleton = Singleton.getInstance();
-        boolean hasPhoto = false;
-        if (singleton.getLogModel() != null) {
-            headerEmailUser.setVisibility(View.VISIBLE);
-            pseudoTv.setVisibility(View.VISIBLE);
-            navigationViewMenu.findItem(R.id.nav_login).setVisible(false);
-            navigationViewMenu.findItem(R.id.nav_logout).setVisible(true);
-            headerEmailUser.setText(singleton.getLogModel().getEmail());
-            pseudoTv.setText(singleton.getLogModel().getPseudo());
-            if (singleton.getLogModel().getPhoto() != null) {
-                hasPhoto = true;
-                Glide.with(getContext())
-                        .load(singleton.getLogModel().getPhoto())
-                        .apply(RequestOptions.circleCropTransform())
-                        .into(imageUser);
-            }
-        }
-        if (!hasPhoto) {
-            Glide.with(getContext())
-                    .load(R.drawable.common_google_signin_btn_icon_dark_focused)
-                    .apply(RequestOptions.circleCropTransform())
-                    .into(imageUser);
-        }*/
         }
     }
 }

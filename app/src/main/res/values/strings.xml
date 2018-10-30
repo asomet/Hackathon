@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Hackathon</string>
+    <string name="app_name">Candy Race</string>
     <string name="s_inscrire">S\'inscrire</string>
     <string name="loginButton">Login</string>
     <string name="loginPassword">Password</string>
@@ -21,6 +21,12 @@
     <string name="add_pic" />
     <string name="suppression_compte" />
     <string name="oui" />
+
+    <string name="name_deals_list">Name</string>
+    <string name="race">Race</string>
+    <string name="candy">Candy</string>
+    <string name="unableCurrentLocation" />
+
     <string name="title_activity_main">MainActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -33,4 +39,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="unable_current_location">position actuelle invalide</string>
     <string name="title_activity_maps">Map</string>
+
 </resources>
