@@ -2,6 +2,7 @@ package fr.wildcodeschool.hackathon;
 
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -25,11 +26,16 @@ public class SplashActivity extends AppCompatActivity {
     private boolean mDealsLoaded = false;
     private boolean mUserLoaded = false;
     private boolean mAnimationEnded = false;
+    MediaPlayer music;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        music = MediaPlayer.create(SplashActivity.this, R.raw.music);
+        music.setVolume(0.2f, 0.2f);
+        music.start();
 
         TextView good = findViewById(R.id.text_candy);
         TextView deals = findViewById(R.id.text_race);

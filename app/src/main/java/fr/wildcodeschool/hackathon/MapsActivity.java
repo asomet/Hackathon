@@ -158,7 +158,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void loadCandy(final CandyListener listener) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference dealRef = database.getReference("deal");
+        DatabaseReference dealRef = database.getReference("hackathon-f88e7");
         dealRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
