@@ -183,6 +183,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLong, 17.0f));
 
 
+
     }
 
 
@@ -208,6 +209,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     Marker marker = mMap.addMarker(markerOptions);
                     marker.setTag(candyModel);
                 }
+
+
             }
         });
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -222,5 +225,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
         mMap.setMyLocationEnabled(true); // position de l'utilisateur sur la carte
 
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                CandyModel deal = (CandyModel) marker.getTag();
+                Intent intent = new Intent(MapsActivity(), Popup.class);
+                intent.putExtra("EXTRA_NAME", hackathon-f88e7.getName());
+                startActivity(intent);
+                return false;
+
     }
+
+
 }
