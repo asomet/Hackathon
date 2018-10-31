@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -44,7 +45,7 @@ import java.util.Date;
 
 import static android.app.Activity.RESULT_OK;
 
-public class ProfilActivity extends android.support.v4.app.Fragment {
+public class ProfilActivity extends AppCompatActivity {
     static final int CAMERA_REQUEST = 3245;
     private static final int GALLERY_SELECT_PICTURE = 1000;
     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -54,29 +55,17 @@ public class ProfilActivity extends android.support.v4.app.Fragment {
     private UploadTask uploadTask;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_profil);
 
         // FIREBASE pour envoie sur STORAGE
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads"); // creation dossier uploads
-        final View rootView = inflater.inflate(R.layout.activity_profil, container, false);
-
-        // BUTTON POUR UPLOAD TO FIREBASE STORAGE + BIND A LA METHOD UPLOADFILE()
-
-        final Button uploadButton = rootView.findViewById(R.id.uploadButton1);
-        uploadButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                uploadButton.setVisibility(View.INVISIBLE);
-                ProgressBar progressBar = rootView.findViewById(R.id.progressBarButton);
-                progressBar.setVisibility(View.VISIBLE);
-                uploadFile();
-            }
-        });
 
 
-        ImageView imgFavorite = rootView.findViewById(R.id.imageViewPhoto);
+        ImageView imgFavorite = findViewById(R.id.imageViewPhoto);
 
-        Singleton singleton = Singleton.getInstance();
+        /*Singleton singleton = Singleton.getInstance();
         LoginModel loginModel = singleton.getLogModel();
         boolean hasPhoto = false;
         if (loginModel != null) {
@@ -93,7 +82,7 @@ public class ProfilActivity extends android.support.v4.app.Fragment {
                     .load(R.drawable.common_google_signin_btn_icon_dark)
                     .apply(RequestOptions.circleCropTransform())
                     .into(imgFavorite);
-        }
+        }*/
 
         imgFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,7 +90,7 @@ public class ProfilActivity extends android.support.v4.app.Fragment {
                 selectImage();
             }
         });
-        return rootView;
+
     }
 
     private void selectImage() {
@@ -110,7 +99,7 @@ public class ProfilActivity extends android.support.v4.app.Fragment {
                 getString(R.string.choose_picture),
                 getString(R.string.cancel)
         };
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(ProfilActivity.this);
         builder.setTitle(R.string.add_pic);
         builder.setItems(options, new DialogInterface.OnClickListener() {
 
@@ -136,7 +125,7 @@ public class ProfilActivity extends android.support.v4.app.Fragment {
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
-        if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+        if (takePictureIntent.resolveActivity(ProfilActivity.this.getPackageManager()) != null) {
             // Create the File where the photo should go
             File photoFile = null;
             try {
@@ -146,7 +135,7 @@ public class ProfilActivity extends android.support.v4.app.Fragment {
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
-                mImageUri = FileProvider.getUriForFile(getContext(),
+                mImageUri = FileProvider.getUriForFile(ProfilActivity.this,
                         "fr.wildcodeschool.gooddeals.fileprovider",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
@@ -155,16 +144,12 @@ public class ProfilActivity extends android.support.v4.app.Fragment {
         }
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // GALLERY
-        ImageView mImageView = getView().findViewById(R.id.imageViewPhoto);
+        ImageView mImageView = findViewById(R.id.imageViewPhoto);
         if (resultCode == RESULT_OK) {
             if (requestCode == CAMERA_REQUEST) {
 
@@ -187,7 +172,7 @@ public class ProfilActivity extends android.support.v4.app.Fragment {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File storageDir = ProfilActivity.this.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         return File.createTempFile(
                 imageFileName,  /* prefix */
                 ".jpg",         /* suffix */

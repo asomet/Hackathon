@@ -21,8 +21,6 @@
             </intent-filter>
             />
         </activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".RegistrationActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
@@ -43,6 +41,9 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"></activity>
         <activity android:name=".PopUp"></activity>
+        <activity android:name=".ProfilActivity"></activity>
+
+
     </application>
 
 </manifest>
