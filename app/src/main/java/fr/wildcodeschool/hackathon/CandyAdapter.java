@@ -36,31 +36,31 @@ public class CandyAdapter extends ArrayAdapter {
         switch (candys.getType()){
 
             case "Chocolate":
-                icons.setImageResource(R.drawable.smarties80);
+                icons.setImageResource(R.drawable.pumpkin);
                 break;
             case "Lollipops":
-                icons.setImageResource(R.drawable.smarties80);
+                icons.setImageResource(R.drawable.pumpkin);
                 break;
             case "Jelly Beans":
-                icons.setImageResource(R.drawable.smarties80);
+                icons.setImageResource(R.drawable.pumpkin);
                 break;
             case "Bubble Gum":
-                icons.setImageResource(R.drawable.smarties80);
+                icons.setImageResource(R.drawable.pumpkin);
                 break;
             case "Caramel":
-                icons.setImageResource(R.drawable.smarties80);
+                icons.setImageResource(R.drawable.pumpkin);
                 break;
             case "Tagada":
-                icons.setImageResource(R.drawable.smarties80);
+                icons.setImageResource(R.drawable.pumpkin);
                 break;
             case "Fudge":
-                icons.setImageResource(R.drawable.smarties80);
+                icons.setImageResource(R.drawable.pumpkin);
                 break;
             case "Dragibus":
-                icons.setImageResource(R.drawable.smarties80);
+                icons.setImageResource(R.drawable.pumpkin);
                 break;
             case "Smarties":
-                icons.setImageResource(R.drawable.smarties80);
+                icons.setImageResource(R.drawable.pumpkin);
                 break;
 
         }

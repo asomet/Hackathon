@@ -39,11 +39,11 @@
 
         <activity
             android:name=".MapsActivity"
-
             android:label="@string/title_activity_maps" />
         <activity android:name=".PopUp" />
-        <activity android:name=".CandyList"></activity>
-        <activity android:name=".ProfilActivity"></activity>
+        <activity android:name=".CandyList" />
+        <activity android:name=".ProfilActivity" />
+        <activity android:name=".ListActivity"></activity>
     </application>
 
 </manifest>

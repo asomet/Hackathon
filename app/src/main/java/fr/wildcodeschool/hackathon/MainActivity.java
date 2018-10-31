@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(MainActivity.this, MapsActivity.class));
 
         } else if (id == R.id.nav_list) {
+            startActivity(new Intent(MainActivity.this, ListActivity.class));
 
 
         }
