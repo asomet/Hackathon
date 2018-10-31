@@ -9,20 +9,11 @@ import android.content.res.Resources;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.support.design.widget.NavigationView;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
-import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -162,7 +153,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void loadCandy(final CandyListener listener) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference dealRef = database.getReference("hackathon-f88e7");
+        DatabaseReference dealRef = database.getReference("candy");
         dealRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -186,51 +177,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng latLong = new LatLng(location.getLatitude(), location.getLongitude());
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLong, 17.0f));
 
+
     }
 
 
-
-        /*for (CandyModel candy : dealsFilter) {
-        int icon = R.drawable.pin;
-        switch (candy.getType()) {
-
-            case "Pour Manger":
-                icon = R.drawable.pin;
-
-                break;
-            case "Apéro":
-                icon = R.drawable.pin_blue;
-                break;
-            case "Friandises":
-                icon = R.drawable.pin_violet;
-                break;
-            case "Bien-être":
-                icon = R.drawable.pin_pink;
-                break;
-            case "Loisirs":
-                icon = R.drawable.pin_red;
-                break;
-        }
-    MarkerOptions markerOptions = new MarkerOptions()
-            .icon(BitmapDescriptorFactory.fromResource(icon));
-            markerOptions.position(new LatLng(CandyModel.getLatitude(), CandyModel.getLongitude()));
-    Marker marker = mMap.addMarker(markerOptions);
-            marker.setTag(candy);
-
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-@Override
-public boolean onMarkerClick(Marker marker) {
-        CandyModel candy = (CandyModel) marker.getTag();
-        Intent intent = new Intent(MapsActivity.this, PopUp.class);
-        intent.putExtra("EXTRA_TITLE", candy.getName());
-        intent.putExtra("EXTRA_DESCRIPTION", candy.getDescription());
-        intent.putExtra("EXTRA_IMAGE", candy.getImage());
-        intent.putExtra("EXTRA_LATITUDE", candy.getLatitude());
-        intent.putExtra("EXTRA_LONGITUDE", candy.getLongitude());
-        startActivity(intent);
-        return false;
-        }
-        };*/
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -254,6 +204,8 @@ public boolean onMarkerClick(Marker marker) {
                     Marker marker = mMap.addMarker(markerOptions);
                     marker.setTag(candyModel);
                 }
+
+
             }
         });
 
@@ -283,6 +235,22 @@ public boolean onMarkerClick(Marker marker) {
         }
         mMap.setMyLocationEnabled(true); // position de l'utilisateur sur la carte
 
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                CandyModel candy = (CandyModel) marker.getTag();
+                Intent intent = new Intent(MapsActivity.this, PopUp.class);
+                intent.putExtra("EXTRA_NAME", candy.getName());
+                intent.putExtra("EXTRA_IMAGE", candy.getImage());
+                intent.putExtra("EXTRA_LATITUDE", candy.getLatitude());
+                intent.putExtra("EXTRA_LONGITUDE", candy.getLongitude());
+                startActivity(intent);
+                return false;
+
+            }
+
+
+        });
+
     }
 }
-

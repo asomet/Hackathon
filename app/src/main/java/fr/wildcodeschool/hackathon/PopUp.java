@@ -32,19 +32,15 @@ public class PopUp extends AppCompatActivity {
         getWindow().setLayout((int) (width * .6), (int) (height * .6));
 
         Intent intentFromList = getIntent();
-        String description = intentFromList.getStringExtra("EXTRA_DESCRIPTION");
-        final String title = intentFromList.getStringExtra("EXTRA_TITLE");
+        final String name = intentFromList.getStringExtra("EXTRA_NAME");
         String image = intentFromList.getStringExtra("EXTRA_IMAGE");
         final Double latitude = intentFromList.getDoubleExtra("EXTRA_LATITUDE", 0.0);
         final Double longitude = intentFromList.getDoubleExtra("EXTRA_LONGITUDE", 0.0);
 
-        TextView text = findViewById(R.id.titleDeal);
-        text.setText(title);
+        TextView text = findViewById(R.id.nameCandy);
+        text.setText(name);
 
-        TextView desc = findViewById(R.id.textPresentation);
-        desc.setText(description);
-
-        ImageView pic = findViewById(R.id.imageDeal);
+        ImageView pic = findViewById(R.id.imageCandy);
         Glide.with(this).load(image).into(pic);
 
         shareDeal = findViewById(R.id.shareButton);
