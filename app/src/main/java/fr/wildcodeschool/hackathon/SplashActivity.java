@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -49,13 +50,25 @@ public class SplashActivity extends AppCompatActivity {
         logo.setAnimation(fromBottom);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        new Handler().postDelayed(new Runnable() {
+
+        final ImageView imageView = findViewById(R.id.image_logo);Animation animation = AnimationUtils.loadAnimation(SplashActivity.this,R.anim.rotate);
+        imageView.startAnimation(animation);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+            }
+        });
+
+
+        /*new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 mAnimationEnded = true;
                 startActivity(new Intent(SplashActivity.this, MainActivity.class));
             }
-        }, SPLASH_TIME_OUT);
+        }, SPLASH_TIME_OUT);*/
 
     }
 

@@ -39,5 +39,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="unable_current_location">position actuelle invalide</string>
     <string name="title_activity_maps">Map</string>
+    <string name="share_body" />
+    <string name="title_share" />
+    <string name="share_bodybis" />
+    <string name="titleShare" />
 
 </resources>

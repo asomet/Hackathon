@@ -32,6 +32,7 @@ public class PopUp extends AppCompatActivity {
         getWindow().setLayout((int) (width * .6), (int) (height * .6));
 
         Intent intentFromList = getIntent();
+        final String title = intentFromList.getStringExtra("EXTRA_TITLE");
         final String name = intentFromList.getStringExtra("EXTRA_NAME");
         String image = intentFromList.getStringExtra("EXTRA_IMAGE");
         final Double latitude = intentFromList.getDoubleExtra("EXTRA_LATITUDE", 0.0);
@@ -49,6 +50,11 @@ public class PopUp extends AppCompatActivity {
             public void onClick(View view) {
                 Intent myIntent = new Intent(Intent.ACTION_SEND);
                 Intent intent = myIntent.setType("Text/Plain");
+                String shareBody = getString(R.string.share_body)+ title + getString(R.string.share_bodybis) + Uri.parse("http://maps.google.com/maps?.34&daddr=" + latitude+ "," + longitude);
+                String titleShare = getString(R.string.title_share) + title;
+                myIntent.putExtra(Intent.EXTRA_SUBJECT, titleShare);
+                myIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
+                startActivity(Intent.createChooser(myIntent, getString(R.string.titleShare)));
             }
         });
         itinerary = findViewById(R.id.bt_itinerary);

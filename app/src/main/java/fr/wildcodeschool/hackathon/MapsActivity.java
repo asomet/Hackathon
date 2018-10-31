@@ -14,6 +14,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -197,6 +200,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         loadCandy(new CandyListener() {
             @Override
             public void onResponse(boolean success) {
+
                 for (CandyModel candyModel : candyArrayList) {
                     MarkerOptions markerOptions = new MarkerOptions()
                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.pumpkin));
@@ -204,7 +208,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     Marker marker = mMap.addMarker(markerOptions);
                     marker.setTag(candyModel);
                 }
-
+                /*Animation animation = AnimationUtils.loadAnimation(MapsActivity.this,R.anim.lefttoright);
+                .startAnimation(animation);*/
 
             }
         });
@@ -238,6 +243,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
+
                 CandyModel candy = (CandyModel) marker.getTag();
                 Intent intent = new Intent(MapsActivity.this, PopUp.class);
                 intent.putExtra("EXTRA_NAME", candy.getName());
