@@ -182,10 +182,51 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng latLong = new LatLng(location.getLatitude(), location.getLongitude());
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLong, 17.0f));
 
-
     }
 
 
+
+        /*for (CandyModel candy : dealsFilter) {
+        int icon = R.drawable.pin;
+        switch (candy.getType()) {
+
+            case "Pour Manger":
+                icon = R.drawable.pin;
+
+                break;
+            case "Apéro":
+                icon = R.drawable.pin_blue;
+                break;
+            case "Friandises":
+                icon = R.drawable.pin_violet;
+                break;
+            case "Bien-être":
+                icon = R.drawable.pin_pink;
+                break;
+            case "Loisirs":
+                icon = R.drawable.pin_red;
+                break;
+        }
+    MarkerOptions markerOptions = new MarkerOptions()
+            .icon(BitmapDescriptorFactory.fromResource(icon));
+            markerOptions.position(new LatLng(CandyModel.getLatitude(), CandyModel.getLongitude()));
+    Marker marker = mMap.addMarker(markerOptions);
+            marker.setTag(candy);
+
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+@Override
+public boolean onMarkerClick(Marker marker) {
+        CandyModel candy = (CandyModel) marker.getTag();
+        Intent intent = new Intent(MapsActivity.this, PopUp.class);
+        intent.putExtra("EXTRA_TITLE", candy.getName());
+        intent.putExtra("EXTRA_DESCRIPTION", candy.getDescription());
+        intent.putExtra("EXTRA_IMAGE", candy.getImage());
+        intent.putExtra("EXTRA_LATITUDE", candy.getLatitude());
+        intent.putExtra("EXTRA_LONGITUDE", candy.getLongitude());
+        startActivity(intent);
+        return false;
+        }
+        };*/
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -224,3 +265,4 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 }
+
