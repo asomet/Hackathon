@@ -8,18 +8,10 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.support.design.widget.NavigationView;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
-import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -158,7 +150,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void loadCandy(final CandyListener listener) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference dealRef = database.getReference("hackathon-f88e7");
+        DatabaseReference dealRef = database.getReference("candy");
         dealRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -181,7 +173,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // zoome la camera sur la dernière position connue
         LatLng latLong = new LatLng(location.getLatitude(), location.getLongitude());
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLong, 17.0f));
-
 
 
     }
@@ -228,13 +219,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                CandyModel deal = (CandyModel) marker.getTag();
-                Intent intent = new Intent(MapsActivity(), Popup.class);
-                intent.putExtra("EXTRA_NAME", hackathon-f88e7.getName());
+                CandyModel candy = (CandyModel) marker.getTag();
+                Intent intent = new Intent(MapsActivity.this, PopUp.class);
+                intent.putExtra("EXTRA_NAME", candy.getName());
+                intent.putExtra("EXTRA_IMAGE", candy.getImage());
+                intent.putExtra("EXTRA_LATITUDE", candy.getLatitude());
+                intent.putExtra("EXTRA_LONGITUDE", candy.getLongitude());
                 startActivity(intent);
                 return false;
 
+            }
+
+
+        });
+
     }
-
-
 }

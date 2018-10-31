@@ -17,14 +17,14 @@ import java.util.ArrayList;
 
 public class CandyAdapter extends ArrayAdapter {
 
-    public CandyAdapter (@NonNull Context context, ArrayList<Candy> results ) {
+    public CandyAdapter (@NonNull Context context, ArrayList<CandyModel> results ) {
         super(context, 0, results);
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        Candy candys = (Candy) getItem(position);
+        CandyModel candys = (CandyModel) getItem(position);
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_candy, parent, false);
